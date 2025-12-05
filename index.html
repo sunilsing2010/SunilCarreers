@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunil J. Singh - Software Engineer</title>
+    <meta name="description" content="Resume portfolio of Sunil J. Singh, Software Engineer specializing in C/C++, Linux, TCP/IP networking, and high-performance systems.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Fonts: Poppins (headings), Inter (body), JetBrains Mono (code/labels) */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color system – light, premium, minimal */
+            --primary-color: #2563eb;              /* main accent (blue) */
+            --primary-soft: #e0edff;
+            --accent-color: #6366f1;               /* secondary accent */
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+
+            --text-primary: #0f172a;               /* slate-900 */
+            --text-secondary: #4b5563;             /* slate-600 */
+            --text-light: #6b7280;                 /* slate-500 */
+            --text-muted: #9ca3af;                 /* slate-400 */
+
+            --bg-page: #f5f5f7;                    /* overall background */
+            --bg-card: #ffffff;
+            --bg-soft: #f9fafb;
+            --bg-soft-alt: #f3f4f6;
+
+            --border-color: #e5e7eb;
+            --border-light: #edf0f4;
+
+            --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+            --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.06);
+            --shadow-md: 0 6px 18px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 14px 30px rgba(15, 23, 42, 0.12);
+
+            /* Very light gradients – no heavy dark backgrounds */
+            --gradient-primary: linear-gradient(135deg, #eef2ff 0%, #e0f2fe 100%);
+            --gradient-secondary: linear-gradient(135deg, #dbeafe 0%, #f5f3ff 100%);
+            --gradient-accent: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
+
+            --border-radius-sm: 6px;
+            --border-radius: 14px;
+            --border-radius-lg: 18px;
+            --border-radius-xl: 26px;
+
+            --transition-fast: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-normal: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-page);
+            font-size: 16px;
+            font-weight: 400;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5f5;
+            border-radius: 999px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(22px) saturate(160%);
+            -webkit-backdrop-filter: blur(22px) saturate(160%);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+            transition: background var(--transition-normal), box-shadow var(--transition-normal), transform 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.25rem;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .logo-mark {
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            background: var(--gradient-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 0.8rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            transition: color var(--transition-fast), transform var(--transition-fast);
+            position: relative;
+            padding: 0.35rem 0;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            transition: width var(--transition-normal), left var(--transition-normal);
+            transform: translateX(-50%);
+            border-radius: 999px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 6rem 1.25rem 2.75rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 6rem 0 4.25rem;
+            margin-bottom: 3.25rem;
+            position: relative;
+            background: radial-gradient(circle at top, rgba(219, 234, 254, 0.8) 0%, rgba(255, 255, 255, 1) 52%, rgba(245, 245, 247, 1) 100%);
+            border-radius: 32px;
+            box-shadow: 0 32px 60px rgba(15, 23, 42, 0.12);
+            overflow: hidden;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 999px;
+            filter: blur(28px);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .hero::before {
+            width: 260px;
+            height: 260px;
+            background: rgba(129, 140, 248, 0.25);
+            top: -60px;
+            left: -60px;
+        }
+
+        .hero::after {
+            width: 260px;
+            height: 260px;
+            background: rgba(45, 212, 191, 0.18);
+            bottom: -60px;
+            right: -60px;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-avatar {
+            width: 132px;
+            height: 132px;
+            border-radius: 999px;
+            margin: 0 auto 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(148, 163, 184, 0.4);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+            position: relative;
+            overflow: hidden;
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+        }
+
+        .hero-avatar::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: conic-gradient(from 180deg, rgba(99,102,241,0.1), rgba(56,189,248,0.25), rgba(52,211,153,0.2), rgba(99,102,241,0.1));
+            z-index: -1;
+        }
+
+        .hero-avatar span {
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-avatar:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 26px 60px rgba(15, 23, 42, 0.22);
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.04em;
+            color: var(--text-primary);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero .title {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            animation: fadeInUp 0.8s ease-out 0.15s both;
+        }
+
+        .hero .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.9rem;
+            animation: fadeInUp 0.8s ease-out 0.45s both;
+        }
+
+        .badge {
+            padding: 0.45rem 0.95rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 0.78rem;
+            color: var(--text-light);
+            border: 1px solid rgba(229, 231, 235, 0.9);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--primary-color);
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 0.85rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: #ffffff;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(37, 99, 235, 0.45);
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
+            border: 1px solid rgba(229, 231, 235, 0.9);
+        }
+
+        .btn-ghost:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn i {
+            font-size: 1rem;
+        }
+
+        /* Section Styles */
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius-xl);
+            padding: 2.25rem 2.25rem 2.3rem;
+            margin-bottom: 2.25rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 18px;
+            right: 18px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 0 0 999px 999px;
+        }
+
+        .section:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(148, 163, 184, 0.6);
+        }
+
+        .section-title {
+            font-size: 1.65rem;
+            font-weight: 700;
+            margin-bottom: 1.6rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            background: var(--gradient-secondary);
+            border-radius: 999px;
+            padding: 0.55rem;
+            box-shadow: var(--shadow-xs);
+        }
+
+        .summary-text {
+            font-size: 0.98rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--bg-soft);
+            padding: 1.6rem 1.5rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-light);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal), background var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -30%;
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, rgba(129, 140, 248, 0.12) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(129, 140, 248, 0.35);
+            background: #ffffff;
+        }
+
+        .skill-category:hover::before {
+            opacity: 1;
+        }
+
+        .skill-category h3 {
+            color: var(--text-primary);
+            margin-bottom: 1.1rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+        }
+
+        .skill-category h3 i {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+        }
+
+        .skill-tag {
+            background: #ffffff;
+            color: var(--text-primary);
+            padding: 0.45rem 0.95rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+            font-family: 'JetBrains Mono', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-accent);
+            transition: left var(--transition-fast);
+            z-index: -1;
+        }
+
+        .skill-tag:hover {
+            color: #ffffff;
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: var(--shadow-sm);
+            border-color: transparent;
+        }
+
+        .skill-tag:hover::before {
+            left: 0;
+        }
+
+        /* Experience Section – timeline */
+        .experience-item {
+            border-left: 3px solid var(--primary-color);
+            padding-left: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: #ffffff;
+            border-radius: 999px;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(191, 219, 254, 0.8);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        .job-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        .company-info {
+            color: var(--text-light);
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-weight: 500;
+            flex-wrap: wrap;
+        }
+
+        .company-info i {
+            color: var(--primary-color);
+        }
+
+        .experience-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .experience-item ul {
+            margin: 1rem 0 0.2rem;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .experience-item li {
+            margin-bottom: 0.55rem;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.4rem;
+            line-height: 1.7;
+            font-size: 0.94rem;
+        }
+
+        .experience-item li::before {
+            content: '';
+            position: absolute;
+            left: 0.2rem;
+            top: 0.65rem;
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--primary-color);
+        }
+
+        .experience-tech {
+            margin-top: 0.9rem;
+            background: var(--bg-soft-alt);
+            padding: 0.85rem 1rem;
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--primary-color);
+            font-size: 0.87rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Achievements / Features */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .achievement-card {
+            background: var(--bg-card);
+            padding: 1.6rem 1.5rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-light);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal), background var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: -40%;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(129, 140, 248, 0.16) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-normal), transform var(--transition-normal);
+            transform: scale(0.9);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(129, 140, 248, 0.45);
+            background: #ffffff;
+        }
+
+        .achievement-card:hover::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .achievement-icon {
+            width: 46px;
+            height: 46px;
+            background: var(--gradient-secondary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.9rem;
+            box-shadow: var(--shadow-xs);
+        }
+
+        .achievement-card h3 {
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+        }
+
+        .achievement-card p {
+            color: var(--text-secondary);
+            font-size: 0.93rem;
+            line-height: 1.7;
+        }
+
+        /* Projects Section */
+        .project-card {
+            background: var(--bg-card);
+            padding: 2rem 1.9rem;
+            border-radius: var(--border-radius-xl);
+            border: 1px solid var(--border-light);
+            margin-bottom: 1.5rem;
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 22px;
+            right: 22px;
+            height: 3px;
+            background: var(--gradient-secondary);
+            border-radius: 0 0 999px 999px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(129, 140, 248, 0.5);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.1rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        .project-role {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .project-tech {
+            color: var(--text-light);
+            font-size: 0.86rem;
+            margin-top: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-soft-alt);
+            padding: 0.5rem 0.8rem;
+            border-radius: 999px;
+            display: inline-block;
+        }
+
+        .project-highlights {
+            background: var(--bg-soft);
+            padding: 1.3rem 1.2rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-light);
+            margin-top: 1.2rem;
+        }
+
+        .project-highlights h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.7rem;
+            font-size: 0.96rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-highlights h4 i {
+            color: var(--warning-color);
+        }
+
+        .project-highlights ul {
+            padding-left: 1.1rem;
+            margin: 0;
+        }
+
+        .project-highlights li {
+            margin-bottom: 0.55rem;
+            color: var(--text-secondary);
+            font-size: 0.93rem;
+        }
+
+        /* Additional Info / Contact */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.4rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            padding: 1.3rem 1.2rem;
+            background: var(--bg-soft);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-light);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal), background var(--transition-normal);
+        }
+
+        .info-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(148, 163, 184, 0.65);
+            background: #ffffff;
+        }
+
+        .info-item i {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-top: 0.1rem;
+        }
+
+        .info-content strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.35rem;
+            font-size: 0.96rem;
+            font-weight: 600;
+        }
+
+        .info-content span {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .info-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .info-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Floating Action Button */
+        .floating-action {
+            position: fixed;
+            bottom: 1.6rem;
+            right: 1.6rem;
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-accent);
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.15rem;
+            box-shadow: 0 18px 40px rgba(37, 99, 235, 0.45);
+            cursor: pointer;
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal), opacity var(--transition-fast), visibility var(--transition-fast);
+            z-index: 1000;
+            border: none;
+            overflow: hidden;
+        }
+
+        .floating-action:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 24px 50px rgba(37, 99, 235, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(32px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.15);
+                opacity: 0.85;
+            }
+        }
+
+        /* Intersection Observer helpers */
+        .fade-in,
+        .fade-in-left,
+        .fade-in-right,
+        .scale-in {
+            opacity: 0;
+            transform: translateY(34px);
+            transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+        }
+
+        .fade-in.visible,
+        .fade-in-left.visible,
+        .fade-in-right.visible,
+        .scale-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.25rem;
+            gap: 4px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 999px;
+            transition: transform 0.3s ease, opacity 0.2s ease;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 4px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(4px, -4px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                gap: 0;
+                padding: 1.3rem 1.4rem 1.6rem;
+                box-shadow: var(--shadow-lg);
+                border-top: 1px solid var(--border-color);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity var(--transition-normal), transform var(--transition-normal), visibility var(--transition-normal);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links li {
+                margin: 0.25rem 0;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .container {
+                padding: 5.3rem 1rem 2rem;
+            }
+
+            .hero {
+                padding: 4.4rem 1.2rem 3rem;
+                margin-bottom: 2.2rem;
+                border-radius: 24px;
+            }
+
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+
+            .hero .title {
+                font-size: 0.95rem;
+            }
+
+            .hero .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .section {
+                padding: 1.8rem 1.5rem 1.9rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .skills-grid,
+            .achievements-grid,
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-header {
+                flex-direction: column;
+            }
+
+            .floating-action {
+                width: 52px;
+                height: 52px;
+                bottom: 1.1rem;
+                right: 1.1rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 4.8rem 0.9rem 1.7rem;
+            }
+
+            .hero {
+                padding: 3.8rem 1rem 2.6rem;
+            }
+
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .section {
+                padding: 1.6rem 1.25rem 1.7rem;
+            }
+
+            .hero-avatar {
+                width: 112px;
+                height: 112px;
+                font-size: 2.2rem;
+            }
+
+            .nav-container {
+                padding: 0.7rem 0.9rem;
+            }
+
+            .logo {
+                font-size: 1.05rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus states */
+        .keyboard-nav .btn:focus,
+        .keyboard-nav .nav-links a:focus,
+        .keyboard-nav .floating-action:focus,
+        .keyboard-nav .project-link:focus,
+        .keyboard-nav .skill-tag:focus {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Print */
+        @media print {
+            body {
+                background: white;
+                font-size: 11pt;
+                line-height: 1.4;
+            }
+
+            .navbar,
+            .floating-action {
+                display: none;
+            }
+
+            .hero {
+                box-shadow: none;
+                border-radius: 0;
+                margin-bottom: 1.2rem;
+            }
+
+            .section {
+                background: white;
+                box-shadow: none;
+                border: 1px solid #e5e7eb;
+                break-inside: avoid;
+                margin-bottom: 0.6rem;
+                padding: 1.2rem;
+            }
+
+            .container {
+                padding-top: 0.8rem;
+                max-width: none;
+            }
+
+            .hero-avatar {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 14pt;
+            }
+
+            .hero h1 {
+                font-size: 18pt;
+                color: #111827;
+            }
+        }
+
+        ::selection {
+            background: rgba(129, 140, 248, 0.18);
+            color: var(--text-primary);
+        }
+
+        ::-moz-selection {
+            background: rgba(129, 140, 248, 0.18);
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-mark">S</div>
+                <span>Sunil J. Singh</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" class="nav-link active">About</a></li>
+                <li><a href="#achievements" class="nav-link">Features</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero / About -->
+        <section class="hero" id="about">
+            <div class="hero-inner">
+                <div class="hero-avatar">
+                    <span>SS</span>
+                </div>
+                <h1>Sunil J. Singh</h1>
+                <p class="title">Software Engineer</p>
+                <p class="subtitle">
+                    Software Engineer with 3+ years of experience across the complete software development lifecycle.
+                    Specialized in C/C++, Linux, TCP/IP networking, and socket programming with a strong focus on legacy
+                    systems, performance improvements, and feature enhancements. Experienced in industrial control systems
+                    and high-performance networking applications.
+                </p>
+
+                <div class="badge-row">
+                    <span class="badge">3+ years experience</span>
+                    <span class="badge">C/C++ · Linux · TCP/IP</span>
+                    <span class="badge">High-performance packet processing</span>
+                    <span class="badge">Industrial control &amp; networking</span>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="sunilvv_cv.pdf" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-file-arrow-down"></i>
+                        Download Resume
+                    </a>
+                    <a href="https://www.linkedin.com/in/sunilsinghsoftwaredev/" target="_blank" class="btn btn-ghost">
+                        <i class="fab fa-linkedin"></i>
+                        View LinkedIn
+                    </a>
+                    <a href="mailto:singhsunilj2010@gmail.com" class="btn btn-ghost">
+                        <i class="fas fa-envelope"></i>
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Summary -->
+        <section class="section fade-in">
+            <h2 class="section-title">
+                <i class="fas fa-user-tie"></i>
+                Professional Summary
+            </h2>
+            <div class="summary-text">
+                Software Engineer with 3+ years of experience delivering robust, high-performance solutions across the full Software Development Life Cycle (SDLC).
+                Strong expertise in C/C++, Linux, TCP/IP networking, and socket programming, with hands-on experience in industrial control systems and
+                high-performance packet processing frameworks such as DPDK. Proven ability to modernize legacy systems, optimize performance,
+                and collaborate with cross-functional teams to deliver reliable, production-grade software that meets critical business and technical requirements.
+            </div>
+        </section>
+
+        <!-- Key Features / Achievements -->
+        <section class="section fade-in-right" id="achievements">
+            <h2 class="section-title">
+                <i class="fas fa-trophy"></i>
+                Key Features &amp; Achievements
+            </h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Automation &amp; Self-Help Tools</h3>
+                    <p>
+                        Designed and implemented a self-help software installation and maintenance tool using C/C++, batch scripts, and SSMS,
+                        significantly reducing manual intervention for installation, cleanup, and environment maintenance activities.
+                    </p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>Custom Deployment Solutions</h3>
+                    <p>
+                        Built custom <code>.exe</code> and <code>.msi</code> packages tailored to complex client environments,
+                        enabling seamless software deployment across multiple user machines with minimal configuration overhead.
+                    </p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>High-Performance Networking</h3>
+                    <p>
+                        Leveraged DPDK libraries and NIC binding techniques to bypass the Linux kernel network stack,
+                        substantially improving packet processing speed, throughput, and latency for networking applications.
+                    </p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-bug-slash"></i>
+                    </div>
+                    <h3>System-Level Debugging</h3>
+                    <p>
+                        Resolved critical issues in legacy and production systems through root-cause analysis, performance tuning,
+                        and systematic debugging across both Windows and Linux environments.
+                    </p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Certifications &amp; Recognition</h3>
+                    <p>
+                        Certified in C, C++, and TCP/IP, with strong problem-solving skills demonstrated through active participation
+                        on competitive coding and technical platforms.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="section fade-in-left" id="skills">
+            <h2 class="section-title">
+                <i class="fas fa-cogs"></i>
+                Technical Skills
+            </h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Shell Scripting</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">OOP</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-network-wired"></i> Networking</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TCP/IP</span>
+                        <span class="skill-tag">UDP/TCP</span>
+                        <span class="skill-tag">Socket Programming</span>
+                        <span class="skill-tag">DPDK</span>
+                        <span class="skill-tag">High-performance I/O</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i> Systems</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Ubuntu</span>
+                        <span class="skill-tag">Windows</span>
+                        <span class="skill-tag">System Debugging</span>
+                        <span class="skill-tag">Performance Optimization</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Development Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">MFC</span>
+                        <span class="skill-tag">Win32 API</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">ClearCase</span>
+                        <span class="skill-tag">MobaXterm</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQLite</span>
+                        <span class="skill-tag">SQL Server (SSMS)</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-bolt"></i> Specializations</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Legacy System Modernization</span>
+                        <span class="skill-tag">Performance Tuning</span>
+                        <span class="skill-tag">Industrial Control Systems</span>
+                        <span class="skill-tag">Deployment Automation</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section class="section fade-in-right" id="experience">
+            <h2 class="section-title">
+                <i class="fas fa-briefcase"></i>
+                Professional Experience
+            </h2>
+
+            <div class="experience-item">
+                <div class="job-title">Software Engineer</div>
+                <div class="company-info">
+                    <i class="fas fa-building"></i>
+                    <span>Utthunga Pvt. Ltd.</span>
+                    <span>&bull;</span>
+                    <span>January 2025 – Present</span>
+                </div>
+                <div class="experience-description">
+                    Working on Honeywell TPS Builder for configuring and troubleshooting HPM/EHPMX industrial controllers in large-scale oil &amp; gas environments.
+                    Supporting system upgrades, resolving critical environment issues, and automating batch translation processes for production deployments.
+                </div>
+                <ul>
+                    <li>Configure and maintain industrial control systems for high-availability process environments.</li>
+                    <li>Assist in troubleshooting controller-related issues and resolving environment-level failures.</li>
+                    <li>Support upgrades and migrations while ensuring minimal downtime and configuration integrity.</li>
+                    <li>Automate repetitive activities in batch translation workflows to improve engineer productivity.</li>
+                </ul>
+                <div class="experience-tech">
+                    <strong>Tech Stack:</strong> C++, MFC, Windows, ClearCase, SQL Server Management Studio (SSMS)
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">Software Engineer</div>
+                <div class="company-info">
+                    <i class="fas fa-building"></i>
+                    <span>Webvoom Pvt. Ltd.</span>
+                    <span>&bull;</span>
+                    <span>June 2022 – November 2024</span>
+                </div>
+                <div class="experience-description">
+                    Developed comprehensive software maintenance tools and high-performance networking solutions.
+                    Created custom installation packages and implemented low-level DHCP and networking programs.
+                    Enhanced packet processing performance using DPDK libraries and NIC binding techniques.
+                </div>
+                <ul>
+                    <li>Designed tools for software installation, maintenance, and cleanup across multiple client environments.</li>
+                    <li>Implemented and optimized low-level networking modules including DHCP and packet handling utilities.</li>
+                    <li>Used DPDK for kernel-bypass networking to achieve high throughput and low-latency packet processing.</li>
+                    <li>Collaborated with cross-functional teams to modernize legacy systems and improve overall system stability.</li>
+                </ul>
+                <div class="experience-tech">
+                    <strong>Tech Stack:</strong> C/C++, Linux, DPDK, TCP/IP, Socket Programming, Shell/Bash
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section fade-in" id="projects">
+            <h2 class="section-title">
+                <i class="fas fa-laptop-code"></i>
+                Key Projects
+            </h2>
+
+            <div class="project-card scale-in">
+                <div class="project-header">
+                    <div>
+                        <div class="project-name">Software Installation &amp; Maintenance Suite</div>
+                        <div class="project-role">Lead Developer – Automation &amp; Tooling</div>
+                        <div class="project-tech">C/C++, Batch Scripts, SSMS, Windows</div>
+                    </div>
+                </div>
+                <p>
+                    Designed and implemented an internal suite for automated software installation, configuration, and cleanup
+                    for production and test environments. Focused on minimizing manual effort, standardizing workflows, and
+                    improving reliability across multiple client setups.
+                </p>
+                <div class="project-highlights">
+                    <h4><i class="fas fa-star"></i> Key Contributions:</h4>
+                    <ul>
+                        <li>Built reusable modules for installation, backup, and rollback of software components.</li>
+                        <li>Integrated database maintenance activities using SSMS scripts for cleanup and verification.</li>
+                        <li>Reduced manual installation efforts and errors by encapsulating complex steps into guided flows.</li>
+                        <li>Improved onboarding experience for new engineers through simplified, documented tools.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-card scale-in">
+                <div class="project-header">
+                    <div>
+                        <div class="project-name">High-Performance Packet Processing Utilities</div>
+                        <div class="project-role">Systems &amp; Networking Engineer</div>
+                        <div class="project-tech">C, Linux, DPDK, TCP/IP, NIC Binding</div>
+                    </div>
+                </div>
+                <p>
+                    Worked on networking utilities built over DPDK to process packets at high speed by bypassing the traditional kernel stack,
+                    targeting low-latency and high-throughput use cases.
+                </p>
+                <div class="project-highlights">
+                    <h4><i class="fas fa-chart-line"></i> Impact:</h4>
+                    <ul>
+                        <li>Improved packet throughput by leveraging NIC binding and zero-copy mechanisms.</li>
+                        <li>Enhanced debugging workflows using system-level logs and performance profiling tools.</li>
+                        <li>Helped benchmark different configurations to identify optimal performance envelopes.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Information / Contact -->
+        <section class="section fade-in" id="contact">
+            <h2 class="section-title">
+                <i class="fas fa-info-circle"></i>
+                Additional Information &amp; Contact
+            </h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-briefcase"></i>
+                    <div class="info-content">
+                        <strong>Professional Experience</strong>
+                        <span>3+ years in software development across networking, industrial control, and system-level tooling.</span>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-network-wired"></i>
+                    <div class="info-content">
+                        <strong>Domain Expertise</strong>
+                        <span>High-performance networking, TCP/IP, DPDK-based packet processing, industrial controller configuration.</span>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <div class="info-content">
+                        <strong>Core Competencies</strong>
+                        <span>Legacy system modernization, performance tuning, debugging, automation, deployment optimization, cross-functional collaboration.</span>
+                    </div>
+                </div>
+
+            
+            </div>
+        </section>
+    </div>
+
+    <!-- Download Resume Floating Button -->
+    <a href="sunilvv_cv.pdf" target="_blank" aria-label="Download Resume">
+        <button class="floating-action">
+            <i class="fas fa-download"></i>
+        </button>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeWebsite();
+        });
+
+        function initializeWebsite() {
+            setupNavigation();
+            setupAnimations();
+            setupAccessibility();
+            setupHeroParallax();
+        }
+
+        function setupNavigation() {
+            const navbar = document.getElementById('navbar');
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const navLinksItems = document.querySelectorAll('.nav-link');
+
+            let lastScrollY = window.scrollY;
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+
+                if (currentScrollY > 80) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                if (currentScrollY > lastScrollY && currentScrollY > 80) {
+                    navbar.style.transform = 'translateY(-100%)';
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+
+                lastScrollY = currentScrollY;
+            });
+
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileMenuToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!navbar.contains(e.target)) {
+                    mobileMenuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            navLinksItems.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        mobileMenuToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            const observerOptions = {
+                rootMargin: '-55% 0px -45% 0px',
+                threshold: 0
+            };
+
+            const activeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinksItems.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section[id]').forEach(section => {
+                activeObserver.observe(section);
+            });
+        }
+
+        function setupAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -40px 0px'
+            };
+
+            const animationObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        const children = entry.target.querySelectorAll('.skill-tag, .achievement-card, .info-item');
+                        children.forEach((child, index) => {
+                            child.style.transitionDelay = `${index * 60}ms`;
+                            child.classList.add('visible-child');
+                            child.style.opacity = '1';
+                            child.style.transform = 'translateY(0) scale(1)';
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(element => {
+                animationObserver.observe(element);
+            });
+
+            document.querySelectorAll('.skill-tag, .achievement-card, .info-item').forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(14px) scale(0.98)';
+                element.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            });
+        }
+
+        function setupHeroParallax() {
+            const hero = document.querySelector('.hero');
+            const heroAvatar = document.querySelector('.hero-avatar');
+
+            if (!hero || !heroAvatar) return;
+
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                if (scrolled < window.innerHeight) {
+                    const translateYHero = scrolled * 0.15;
+                    const translateYAvatar = scrolled * 0.1;
+                    const scaleAvatar = 1 + scrolled * 0.00025;
+
+                    hero.style.transform = `translateY(${translateYHero}px)`;
+                    heroAvatar.style.transform = `translateY(${translateYAvatar}px) scale(${scaleAvatar})`;
+                }
+            });
+        }
+
+        function setupAccessibility() {
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-nav');
+                }
+
+                if (e.key === 'Escape') {
+                    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                    const navLinks = document.getElementById('navLinks');
+                    mobileMenuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('mousedown', () => {
+                document.body.classList.remove('keyboard-nav');
+            });
+
+            const navLinks = document.getElementById('navLinks');
+            const focusableElements = navLinks.querySelectorAll('a');
+            if (!focusableElements.length) return;
+
+            const firstFocusable = focusableElements[0];
+            const lastFocusable = focusableElements[focusableElements.length - 1];
+
+            navLinks.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstFocusable) {
+                            lastFocusable.focus();
+                            e.preventDefault();
+                        }
+                    } else {
+                        if (document.activeElement === lastFocusable) {
+                            firstFocusable.focus();
+                            e.preventDefault();
+                        }
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('error', (e) => {
+            console.error('Website error:', e.error);
+        });
+    </script>
+</body>
+</html>
